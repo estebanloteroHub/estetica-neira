@@ -1,0 +1,24 @@
+---
+import { siteInfo } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__main page-container">
+    <a class="brand brand--footer" href="#inicio" aria-label={`${siteInfo.name}, volver al inicio`}>
+      <span class="brand__seal" aria-hidden="true">N</span>
+      <span class="brand__text">
+        <span class="brand__name">Estética Neira</span>
+        <span class="brand__caption">Un espacio para volver a ti.</span>
+      </span>
+    </a>
+    <nav class="site-footer__nav" aria-label="Navegación del pie de página">
+      <a href="#tratamientos">Tratamientos</a>
+      <a href="#ritual">Utsukusy</a>
+      <a href="#reserva">Contacto</a>
+    </nav>
+  </div>
+  <div class="site-footer__bottom page-container">
+    <p>© {new Date().getFullYear()} Estética Neira · Valladolid</p>
+    <p class="site-footer__demo">Maqueta: contacto, precios y horarios son datos de prueba.</p>
+  </div>
+</footer>

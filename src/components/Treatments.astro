@@ -1,0 +1,97 @@
+---
+import { additionalTreatments, featuredTreatments } from '../data/treatments';
+import { createWhatsAppLink } from '../utils/whatsapp';
+
+const formatPrice = (price: number) =>
+  new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+  }).format(price);
+---
+
+<section class="treatments section-pad" id="tratamientos" aria-labelledby="treatments-title">
+  <div class="page-container">
+    <div class="section-heading treatments__heading">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span>Encuentra tu momento</p>
+        <h2 class="section-title" id="treatments-title">¿Qué te gustaría<br /><em>sentir hoy?</em></h2>
+      </div>
+      <p class="section-heading__aside">
+        Elige el cuidado que más te apetece. Si tienes dudas, te ayudamos a encontrar el tuyo.
+      </p>
+    </div>
+
+    <p class="demo-note">
+      <span class="demo-note__symbol" aria-hidden="true">✳</span>
+      Precios y duraciones de muestra · se actualizarán con la carta definitiva
+    </p>
+
+    <div class="treatment-grid">
+      {featuredTreatments.map((treatment, index) => {
+        const bookingLink = createWhatsAppLink(
+          `Hola, me interesa reservar ${treatment.title.toLowerCase()} en Estética Neira. ¿Podéis informarme de disponibilidad?`,
+        );
+
+        return (
+          <article class={`treatment-card treatment-card--${index + 1}`} aria-labelledby={`treatment-${treatment.id}`}>
+            <div class="treatment-card__image-wrap">
+              <img
+                class="treatment-card__image"
+                src={treatment.image}
+                alt={treatment.imageAlt}
+                loading="lazy"
+                decoding="async"
+                style={`object-position: ${treatment.imagePosition ?? 'center'};`}
+              />
+              <span class="treatment-card__number" aria-hidden="true">0{index + 1}</span>
+              <span class="treatment-card__category">{treatment.category}</span>
+            </div>
+
+            <div class="treatment-card__body">
+              <h3 class="treatment-card__title" id={`treatment-${treatment.id}`}>{treatment.title}</h3>
+              <p class="treatment-card__description">{treatment.description}</p>
+
+              <ul class="treatment-card__tags" aria-label="Características del tratamiento">
+                {treatment.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+
+              <div class="treatment-card__details">
+                <span><small>Duración</small><strong>{treatment.duration}</strong></span>
+                <span class="treatment-card__price"><small>Precio de muestra</small><strong>{formatPrice(treatment.price)}</strong></span>
+              </div>
+
+              <a
+                class="treatment-card__link"
+                href={bookingLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Reservar ${treatment.title} por WhatsApp`}
+              >
+                <span>Consultar este tratamiento</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M4 10h11M10 4l6 6-6 6" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="treatments__more">
+      <div>
+        <span class="treatments__more-label">También puedes descubrir</span>
+        <ul class="treatments__more-list">
+          {additionalTreatments.map((treatment) => <li>{treatment}</li>)}
+        </ul>
+      </div>
+      <a class="text-link text-link--dark" href="#reserva">
+        <span>Te orientamos personalmente</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M4 10h11M10 4l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

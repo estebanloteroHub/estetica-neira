@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import Treatments from '../components/Treatments.astro';
+import Ritual from '../components/Ritual.astro';
+import Booking from '../components/Booking.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import MobileBookingBar from '../components/MobileBookingBar.astro';
+---
+
+<SiteLayout>
+  <SiteHeader />
+  <main id="contenido">
+    <Hero />
+    <Treatments />
+    <Ritual />
+    <Booking />
+  </main>
+  <SiteFooter />
+  <MobileBookingBar />
+</SiteLayout>

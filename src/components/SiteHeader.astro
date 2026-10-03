@@ -1,0 +1,69 @@
+---
+import { siteInfo } from '../data/site';
+import { createWhatsAppLink } from '../utils/whatsapp';
+
+const bookingLink = createWhatsAppLink();
+---
+
+<header class="site-header">
+  <div class="site-header__inner page-container">
+    <a class="brand" href="#inicio" aria-label={`${siteInfo.name}, ir al inicio`}>
+      <span class="brand__seal" aria-hidden="true">N</span>
+      <span class="brand__text">
+        <span class="brand__name">Estética Neira</span>
+        <span class="brand__caption">Bienestar · Valladolid</span>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="site-navigation"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" id="site-navigation" aria-label="Navegación principal">
+      <a class="site-nav__link" href="#tratamientos">Tratamientos</a>
+      <a class="site-nav__link" href="#ritual">El ritual</a>
+      <a class="site-nav__link" href="#reserva">Contacto</a>
+      <a class="button button--dark site-nav__booking" href={bookingLink} target="_blank" rel="noreferrer">
+        <span>Reservar</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M4 10h11M10 4l6 6-6 6" />
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuButton = document.querySelector('.menu-toggle');
+  const navigation = document.querySelector('.site-nav');
+
+  if (menuButton instanceof HTMLButtonElement && navigation instanceof HTMLElement) {
+    const closeMenu = () => {
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Abrir menú');
+      navigation.classList.remove('is-open');
+    };
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+      navigation.classList.toggle('is-open', !isOpen);
+    });
+
+    navigation.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+  }
+</script>

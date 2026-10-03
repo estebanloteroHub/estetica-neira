@@ -1,0 +1,54 @@
+---
+import { createWhatsAppLink } from '../utils/whatsapp';
+
+const productLink = createWhatsAppLink(
+  'Hola, me gustaría conocer los productos Utsukusy disponibles en Estética Neira.',
+);
+---
+
+<section class="ritual section-pad" id="ritual" aria-labelledby="ritual-title">
+  <div class="ritual__inner page-container">
+    <div class="ritual__visual">
+      <div class="ritual__photo-frame">
+        <img
+          src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=82"
+          alt="Cosmética facial y texturas para el cuidado de la piel"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="ritual__floating-card">
+        <span class="ritual__floating-mark" aria-hidden="true">N</span>
+        <span>Un ritual que<br />continúa en casa.</span>
+      </div>
+      <div class="ritual__vertical-note" aria-hidden="true">CUIDADO CONSCIENTE · 02</div>
+    </div>
+
+    <div class="ritual__copy">
+      <p class="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span>El ritual también sigue contigo</p>
+      <p class="ritual__brand">Cosmética profesional <span>UTSUKUSY</span></p>
+      <h2 class="section-title" id="ritual-title">El cuidado que<br /><em>se queda contigo.</em></h2>
+      <p class="ritual__lead">
+        Te acompañamos a elegir productos Utsukusy para que tu rutina en casa se sienta sencilla, agradable y pensada para ti.
+      </p>
+
+      <ul class="ritual__benefits">
+        <li>
+          <span aria-hidden="true">01</span>
+          <div><strong>Recomendación cercana</strong><small>Te orientamos según tu rutina y preferencias.</small></div>
+        </li>
+        <li>
+          <span aria-hidden="true">02</span>
+          <div><strong>Cosmética Utsukusy</strong><small>Selección de cuidado facial y corporal.</small></div>
+        </li>
+      </ul>
+
+      <a class="button button--outline" href={productLink} target="_blank" rel="noreferrer">
+        <span>Consultar productos</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M4 10h11M10 4l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
